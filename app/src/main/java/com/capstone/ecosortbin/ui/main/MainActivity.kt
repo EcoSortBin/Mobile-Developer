@@ -1,4 +1,4 @@
-package com.capstone.ecosortbin
+package com.capstone.ecosortbin.ui.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.capstone.ecosortbin.R
 import com.capstone.ecosortbin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
