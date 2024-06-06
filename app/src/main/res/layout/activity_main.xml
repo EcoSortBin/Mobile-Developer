@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/softgreen"
     android:paddingTop="?attr/actionBarSize">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,12 +15,13 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="?android:attr/windowBackground"
+        app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:labelVisibilityMode="selected"
         app:menu="@menu/bottom_nav_menu" />
-<ImageView
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,9 +61,9 @@
         app:cardBackgroundColor="@color/softgreen1"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/guideline">
 
     </androidx.cardview.widget.CardView>
 
@@ -72,53 +75,22 @@
         app:cardBackgroundColor="@color/softgreen1"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@id/card_organic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/card_organic">
 
     </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:id="@+id/organic"
-        android:layout_width="210dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="36dp"
-        android:background="@color/softgreen3"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-        <ImageView
-            android:layout_width="28dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center"
-            android:src="@drawable/anorganik" />
-
-        <Button
-            android:id="@+id/button_anorganic"
-            android:layout_width="159dp"
-            android:layout_height="52dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:background="@android:color/transparent"
-            android:text="anorganik"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="210dp"
         android:layout_height="56dp"
-        android:layout_marginTop="452dp"
+        android:layout_marginTop="40dp"
         android:background="@color/softgreen3"
         android:orientation="horizontal"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline">
 
@@ -130,15 +102,46 @@
 
         <Button
             android:id="@+id/button_organic"
-            android:layout_width="143dp"
-            android:layout_height="50dp"
+            android:layout_width="144dp"
+            android:layout_height="59dp"
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:background="@android:color/transparent"
             android:text="organic"
             android:textColor="@color/black" />
     </LinearLayout>
-    
+
+    <LinearLayout
+        android:id="@+id/organic"
+        android:layout_width="210dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/softgreen3"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:src="@drawable/anorganik" />
+
+        <Button
+            android:id="@+id/button_anorganic"
+            android:layout_width="156dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/transparent"
+            android:text="anorganik"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
     <fragment
         android:id="@+id/nav_host_fragment_activity_main"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -146,9 +149,11 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:navGraph="@navigation/mobile_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

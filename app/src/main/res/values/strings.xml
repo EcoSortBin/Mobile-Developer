@@ -3,7 +3,12 @@
     <string name="title_home">Home</string>
     <string name="title_scan">Scan</string>
     <string name="title_settings">Settings</string>
-<string-array name="Description">
+    <string name="theme">Change Theme</string>
+    <string name="language">Language</string>
+    <string name="logout">Log Out</string>
+
+    <string-array name="Description">
+>>>>>>> master
         <item>Sampah organik adalah limbah yang berasal dari materi-materi hayati yang dapat diurai secara alami oleh mikroorganisme. Contoh-contohnya mencakup:
     - Sisa-sisa makanan seperti sayuran, buah-buahan, daging, dan biji-bijian.
     - Daun-daunan, rumput, serta ranting pohon.
@@ -28,5 +33,10 @@
             - Seni dan Kerajinan: Sampah anorganik bisa digunakan untuk kerajinan tangan.</item>
     </string-array>
 
-    <string-array name="image"></string-array>
+    <string-array name="image">
+        <item>@drawable/s_organik</item>
+        <item>@drawable/s_anorganik</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
