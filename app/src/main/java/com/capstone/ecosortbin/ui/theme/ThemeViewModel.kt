@@ -1,4 +1,4 @@
-package com.capstone.ecosortbin.ui.Theme
+package com.capstone.ecosortbin.ui.theme
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -8,13 +8,13 @@ import com.capstone.ecosortbin.ui.settings.SettingPreferences
 import kotlinx.coroutines.launch
 
 class ThemeViewModel (private val pref: SettingPreferences) : ViewModel() {
-    fun getThemeSettings(): LiveData<Boolean> {
-        return pref.getThemeSetting().asLiveData()
-    }
-
-    fun saveThemeSetting(isDarkModeActive: Boolean) {
-        viewModelScope.launch {
-            pref.saveThemeSetting(isDarkModeActive)
-        }
-    }
+//    fun getThemeSettings(): LiveData<Boolean> {
+//        return pref.getThemeSetting().asLiveData()
+//    }
+//
+//    fun saveThemeSetting(isDarkModeActive: Boolean) {
+//        viewModelScope.launch {
+//            pref.saveThemeSetting(isDarkModeActive)
+//        }
+//    }
 }

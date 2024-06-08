@@ -1,4 +1,4 @@
-package com.capstone.ecosortbin.ui.Theme
+package com.capstone.ecosortbin.ui.theme
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
