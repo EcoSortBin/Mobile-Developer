@@ -50,7 +50,37 @@
     <string name="image_scan">image_scan</string>
     <string name="get_result">Get Result</string>
     <string name="image_camera">Image Camera</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="theme">Change Theme</string>
+    <string name="language">Language</string>
+
+    <string-array name="Description">
+        <item>Sampah organik adalah limbah yang berasal dari materi-materi hayati yang dapat diurai secara alami oleh mikroorganisme. Contoh-contohnya mencakup:
+    - Sisa-sisa makanan seperti sayuran, buah-buahan, daging, dan biji-bijian.
+    - Daun-daunan, rumput, serta ranting pohon.
+    - Kulit buah dan sayuran.
+
+      Pengelolaan dan pemanfaatan:
+      Pengelolaannya dapat dilakukan melalui proses pengomposan, baik di tingkat rumah tangga maupun menggunakan fasilitas pengolahan kompos. Selain itu, sampah organik juga dapat dimanfaatkan sebagai pakan ternak. </item>
+        - Pengomposan: Menghasilkan kompos untuk pupuk alami.
+        - Vermikompos: Menggunakan cacing tanah untuk penguraian sampah.
+        - Pakan Ternak: Beberapa sampah organik bisa dijadikan pakan ternak.
+        <item>Sampah anorganik adalah sampah yang berasal dari bahan-bahan non-hayati atau bahan-bahan yang sulit terurai oleh mikroorganisme. Contoh dari sampah anorganik meliputi:
+
+        - Plastik seperti botol, kantong, dan kemasan makanan
+        - Kaca seperti botol dan pecahan kaca
+        - Logam seperti kaleng dan aluminium foil
+        - Kertas yang dilapisi bahan non-organik seperti karton susu
+
+        Pengelolaan dan pemanfaatan:
+        Sampah anorganik dapat didaur ulang menjadi produk baru. Misalnya, plastik dapat didaur ulang menjadi barang plastik baru, dan logam dapat dilebur dan dicetak ulang. Penting untuk memisahkan sampah anorganik dari sampah organik untuk memudahkan proses daur ulang.
+            - Ecobrick: Mengemas sampah plastik ke dalam botol plastik untuk material bangunan ringan.
+            - Penggunaan Kembali: Barang bekas yang masih layak pakai.
+            - Seni dan Kerajinan: Sampah anorganik bisa digunakan untuk kerajinan tangan.</item>
+    </string-array>
+
+    <string-array name="image">
+        <item>@drawable/s_organik</item>
+        <item>@drawable/s_anorganik</item>
+    </string-array>
 
 </resources>
