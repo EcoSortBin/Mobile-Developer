@@ -36,6 +36,8 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+        mlModelBinding = true
     }
 }
 
@@ -49,7 +51,24 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.exifinterface)
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+    implementation(libs.logging.interceptor)
+    //Lifecycle
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    //tensorflow kit
+    implementation(libs.tensorflow.lite.task.vision)
+
+    //Ucrop
+    implementation(libs.ucrop)
+
 }
