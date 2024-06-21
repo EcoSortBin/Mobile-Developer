@@ -13,24 +13,9 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/bg"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="366dp" />
-
-    <TextView
-        android:id="@+id/titleLogin"
-        android:layout_width="325dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="100dp"
-        android:background="@color/softgreen1"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="@string/app_name"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:contentDescription="@string/background_image"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -39,81 +24,27 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_organic"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_organic"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:cardBackgroundColor="@color/softgreen1"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/organic"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline">
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="@id/guideline" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_anorganic"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_anorganic"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:cardBackgroundColor="@color/softgreen1"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/anorganic"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_organic">
-
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="210dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="40dp"
-        android:background="@color/softgreen3"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline">
-
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_organic"
-            android:layout_width="wrap_content"
-            android:layout_height="59dp"
-            android:layout_gravity="center"
-            android:text="Organic"
-            android:textColor="@color/black" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/organic"
-        android:layout_width="210dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="56dp"
-        android:background="@color/softgreen3"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_anorganic"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:background="@android:color/transparent"
-            android:text="Anorganic"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-
+        app:layout_constraintTop_toBottomOf="@id/button_organic" />
 </androidx.constraintlayout.widget.ConstraintLayout>
