@@ -1,91 +1,112 @@
 <resources>
     <string name="app_name">EcoSortBin</string>
-    <string name="title_home">Home</string>
-    <string name="title_scan">Scan</string>
-    <string name="title_settings">Settings</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_scan">Pindai</string>
+    <string name="title_settings">Pengaturan</string>
     <string name="login_text">Masuk untuk mengklasifikasikan sampah organik dan anorganik secara efisien</string>
     <string name="register_text">Bergabunglah dengan EcoSortBin dan bantu kami dengan mengklasifikasikan sampah</string>
 
-    <string name="login">Login</string>
-    <string name="title_signup_page">Complete your data below</string>
+    <string name="login">Masuk</string>
+    <string name="title_signup_page">Lengkapi data Anda di bawah ini</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="repassword">Re-Password</string>
-    <string name="message_login_page">Please enter your data first</string>
-    <string name="title_login_page">Ready to share your story?</string>
-    <string name="name">Name</string>
-    <string name="image_signup">Image Sign Up</string>
-    <string name="title_menu_1">Find inspiration from\n daily stories</string>
-    <string name="title_menu_2">Share your special moments</string>
-    <string name="title_menu_3">Happiness is part of\n every story we have</string>
-    <string name="register">Register</string>
-    <string name="add_button">Add Story</string>
-    <string name="profile">Profile</string>
-    <string name="camera">Camera</string>
-    <string name="description">Description</string>
-    <string name="save">Save</string>
-    <string name="gallery">Gallery</string>
-    <string name="preview">Preview Image</string>
-    <string name="image_detail">Image Detail</string>
-    <string name="upload_success">Upload Successful</string>
-    <string name="upload_failed">Upload Failed</string>
-    <string name="logout">Logout</string>
-    <string name="change_language">Change Language</string>
+    <string name="password">Kata Sandi</string>
+    <string name="repassword">Ulangi Kata Sandi</string>
+    <string name="message_login_page">Silakan masukkan data Anda terlebih dahulu</string>
+    <string name="title_login_page">Siap untuk berbagi cerita Anda?</string>
+    <string name="name">Nama</string>
+    <string name="image_signup">Gambar Pendaftaran</string>
+    <string name="title_menu_1">Temukan inspirasi dari\n cerita sehari-hari</string>
+    <string name="title_menu_2">Bagikan momen spesial Anda</string>
+    <string name="title_menu_3">Kebahagiaan adalah bagian dari\n setiap cerita yang kami miliki</string>
+    <string name="register">Daftar</string>
+    <string name="add_button">Tambah Cerita</string>
+    <string name="profile">Profil</string>
+    <string name="camera">Kamera</string>
+    <string name="description">Deskripsi</string>
+    <string name="save">Simpan</string>
+    <string name="gallery">Galeri</string>
+    <string name="preview">Pratinjau Gambar</string>
+    <string name="image_detail">Detail Gambar</string>
+    <string name="upload_success">Unggahan Berhasil</string>
+    <string name="upload_failed">Unggahan Gagal</string>
+    <string name="logout">Keluar</string>
+    <string name="change_language">Ubah Bahasa</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="mapsuser">MapsUser</string>
+    <string name="mapsuser">Pengguna Peta</string>
 
     <string name="normal_type">Normal</string>
-    <string name="satellite_type">Satellite</string>
-    <string name="terrain_type">Terrain</string>
-    <string name="hybrid_type">Hybrid</string>
-    <string name="add_your_location">Add your current location ?</string>
-    <string name="retry">Try Again</string>
-    <string name="password_alert">Password Cannot less than 8 Character</string>
-    <string name="keep_signin">Keep me signed in</string>
-    <string name="explore_now">Explore now</string>
-    <string name="register_now">Register now</string>
-    <string name="forgot_password">Forgot Password ?</string>
-    <string name="have_account">Already Have an Account ?\nLogin Here</string>
-    <string name="dont_have_account">Don\'t Have an Account ?\nRegister Here</string>
-    <string name="image_scan">image_scan</string>
-    <string name="get_result">Get Result</string>
-    <string name="image_camera">Image Camera</string>
-    <string name="theme">Change Theme</string>
-    <string name="image_classifier_failed">Image classifier failed to initialize. See error logs for details</string>
-    <string name="language">Language</string>
+    <string name="satellite_type">Satelit</string>
+    <string name="terrain_type">Medan</string>
+    <string name="hybrid_type">Hibrida</string>
+    <string name="add_your_location">Tambahkan lokasi Anda saat ini?</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="result">Hasil Analisis</string>
+    <string name="kind">Jenis Sampah</string>
+    <string name="penanganan_sampah">Penanganan Sampah</string>
+    <string name="password_alert">Kata Sandi Tidak Boleh Kurang Dari 8 Karakter</string>
+    <string name="keep_signin">Biarkan saya tetap masuk</string>
+    <string name="explore_now">Jelajahi sekarang</string>
+    <string name="register_now">Daftar sekarang</string>
+    <string name="forgot_password">Lupa Kata Sandi?</string>
+    <string name="have_account">Sudah Punya Akun?\nMasuk di Sini</string>
+    <string name="dont_have_account">Tidak Punya Akun?\nDaftar di Sini</string>
+    <string name="image_scan">Pindai Gambar</string>
+    <string name="get_result">Dapatkan Hasil</string>
+    <string name="image_camera">Gambar Kamera</string>
+    <string name="theme">Ubah Tema</string>
+    <string name="image_classifier_failed">Klasifikasi gambar gagal diinisialisasi. Lihat log kesalahan untuk detailnya</string>
+    <string name="language">Bahasa</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
-    <string name="forget_password">Forgot Password</string>
-    <string name="reset_password">Reset Password</string>
-    <string name="back_to_login">Back To Login</string>
+    <string name="forget_password">Lupa Kata Sandi</string>
+    <string name="reset_password">Atur Ulang Kata Sandi</string>
+    <string name="back_to_login">Kembali ke Masuk</string>
+    <string name="forget_password_description">Silakan isi informasi di bawah ini untuk mengatur ulang kata sandi Anda.</string>
 
-    <string-array name="Description">
-        <item>Sampah organik adalah limbah yang berasal dari materi-materi hayati yang dapat diurai secara alami oleh mikroorganisme. Contoh-contohnya mencakup:
-    - Sisa-sisa makanan seperti sayuran, buah-buahan, daging, dan biji-bijian.
-    - Daun-daunan, rumput, serta ranting pohon.
-    - Kulit buah dan sayuran.
-
-      Pengelolaan dan pemanfaatan:
-      Pengelolaannya dapat dilakukan melalui proses pengomposan, baik di tingkat rumah tangga maupun menggunakan fasilitas pengolahan kompos. Selain itu, sampah organik juga dapat dimanfaatkan sebagai pakan ternak. </item>
-        - Pengomposan: Menghasilkan kompos untuk pupuk alami.
-        - Vermikompos: Menggunakan cacing tanah untuk penguraian sampah.
-        - Pakan Ternak: Beberapa sampah organik bisa dijadikan pakan ternak.
-        <item>Sampah anorganik adalah sampah yang berasal dari bahan-bahan non-hayati atau bahan-bahan yang sulit terurai oleh mikroorganisme. Contoh dari sampah anorganik meliputi:
-
-        - Plastik seperti botol, kantong, dan kemasan makanan
-        - Kaca seperti botol dan pecahan kaca
-        - Logam seperti kaleng dan aluminium foil
-        - Kertas yang dilapisi bahan non-organik seperti karton susu
-
-        Pengelolaan dan pemanfaatan:
-        Sampah anorganik dapat didaur ulang menjadi produk baru. Misalnya, plastik dapat didaur ulang menjadi barang plastik baru, dan logam dapat dilebur dan dicetak ulang. Penting untuk memisahkan sampah anorganik dari sampah organik untuk memudahkan proses daur ulang.
-            - Ecobrick: Mengemas sampah plastik ke dalam botol plastik untuk material bangunan ringan.
-            - Penggunaan Kembali: Barang bekas yang masih layak pakai.
-            - Seni dan Kerajinan: Sampah anorganik bisa digunakan untuk kerajinan tangan.</item>
+    <string-array name="Description_text">
+        <item><![CDATA[
+        <p>Sampah organik adalah limbah yang berasal dari materi-materi hayati yang dapat diurai secara alami oleh mikroorganisme. Contoh-contohnya mencakup:</p>
+        <ul>
+            <li>Sisa-sisa makanan seperti sayuran, buah-buahan, daging, dan biji-bijian.</li>
+            <li>Daun-daunan, rumput, serta ranting pohon.</li>
+            <li>Kulit buah dan sayuran.</li>
+        </ul>
+        <p>Pengelolaan dan pemanfaatan:</p>
+        <ul>
+            <li>Pengomposan: Menghasilkan kompos untuk pupuk alami.</li>
+            <li>Vermikompos: Menggunakan cacing tanah untuk penguraian sampah.</li>
+            <li>Pakan Ternak: Beberapa sampah organik bisa dijadikan pakan ternak.</li>
+        </ul>
+        ]]></item>
+        <item><![CDATA[
+        <p>Sampah anorganik adalah sampah yang berasal dari bahan-bahan non-hayati atau bahan-bahan yang sulit terurai oleh mikroorganisme. Contoh dari sampah anorganik meliputi:</p>
+        <ul>
+            <li>Plastik seperti botol, kantong, dan kemasan makanan.</li>
+            <li>Kaca seperti botol dan pecahan kaca.</li>
+            <li>Logam seperti kaleng dan aluminium foil.</li>
+            <li>Kertas yang dilapisi bahan non-organik seperti karton susu.</li>
+        </ul>
+        <p>Pengelolaan dan pemanfaatan:</p>
+        <ul>
+            <li>Ecobrick: Mengemas sampah plastik ke dalam botol plastik untuk material bangunan ringan.</li>
+            <li>Penggunaan Kembali: Barang bekas yang masih layak pakai.</li>
+            <li>Seni dan Kerajinan: Sampah anorganik bisa digunakan untuk kerajinan tangan.</li>
+        </ul>
+        ]]></item>
     </string-array>
 
     <string-array name="image">
         <item>@drawable/s_organik</item>
         <item>@drawable/s_anorganik</item>
     </string-array>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Fragmen Pertama</string>
+    <string name="second_fragment_label">Fragmen Kedua</string>
+    <string name="next">Berikutnya</string>
+    <string name="previous">Sebelumnya</string>
+    <string name="organic">Organik</string>
+    <string name="anorganic">Anorganik</string>
+    <string name="background_image">gambar latar belakang</string>
+    <string name="type">Jenis</string>
 
 </resources>

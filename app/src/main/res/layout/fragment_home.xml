@@ -7,43 +7,15 @@
     android:background="@color/green"
     tools:context=".ui.home.HomeFragment">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="?android:attr/windowBackground"
-        app:labelVisibilityMode="selected"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/bg"
-        tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <TextView
-        android:id="@+id/titleLogin"
-        android:layout_width="325dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="100dp"
-        android:background="@color/softgreen1"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="@string/app_name"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:contentDescription="@string/background_image"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -52,48 +24,27 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_organic"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_organic"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:cardBackgroundColor="@color/softgreen1"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/organic"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline">
+        app:layout_constraintTop_toTopOf="@id/guideline" />
 
-        <Button
-            android:id="@+id/button_organic"
-            android:layout_width="182dp"
-            android:layout_height="57dp"
-            android:backgroundTint="@color/softgreen1"
-            android:text="Organic"
-            android:textColor="@color/black" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_anorganic"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_anorganic"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:cardBackgroundColor="@color/softgreen1"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/anorganic"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_organic">
-
-        <Button
-            android:id="@+id/button_anorganic"
-            android:layout_width="182dp"
-            android:layout_height="57dp"
-            android:backgroundTint="@color/softgreen1"
-            android:textColor="@color/black"
-            android:text="Anorganic" />
-
-    </androidx.cardview.widget.CardView>
-
+        app:layout_constraintTop_toBottomOf="@id/button_organic" />
 </androidx.constraintlayout.widget.ConstraintLayout>

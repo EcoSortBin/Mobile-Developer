@@ -1,5 +1,7 @@
 package com.capstone.ecosortbin.ui.scan
 
+import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -8,25 +10,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.capstone.ecosortbin.R
 import com.capstone.ecosortbin.databinding.FragmentScanBinding
+import com.capstone.ecosortbin.ui.result.ResultActivity
+import com.capstone.ecosortbin.ui.result.ResultActivity.Companion.TAG
 import com.capstone.ecosortbin.utils.getImageUri
-import com.capstone.ecosortbin.utils.reduceFileImage
-import com.capstone.ecosortbin.utils.uriToFile
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
+import com.yalantis.ucrop.UCrop
+import java.io.File
 
 class ScanFragment : Fragment() {
+    private var currentImageUri: Uri? = null
+    private var croppedImageUri: Uri? = null
     private var _binding: FragmentScanBinding? = null
     private val binding get() = _binding!!
 
-    private var currentImageUri: Uri? = null
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentScanBinding.inflate(inflater, container, false)
@@ -35,19 +38,14 @@ class ScanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupViews()
-    }
-
-    private fun setupViews() {
-        binding.apply {
-            btnCamera.setOnClickListener {
-                startCamera()
-            }
-            btnGallery.setOnClickListener {
-                startGallery()
-            }
-            btnScan.setOnClickListener {
-                uploadImage()
+        binding.btnGallery.setOnClickListener { startGallery() }
+        binding.btnCamera.setOnClickListener { startCamera() }
+        binding.btnScan.setOnClickListener {
+            croppedImageUri?.let {
+                analyzeImage(it)
+                moveToResult()
+            } ?: run {
+                showToast(getString(R.string.empty_image_warning))
             }
         }
     }
@@ -58,16 +56,31 @@ class ScanFragment : Fragment() {
         if (uri != null) {
             currentImageUri = uri
             showImage()
+            startUCrop(currentImageUri!!)
         } else {
-            Log.d("Photo Picker", "No Media Selected")
+            Log.d("Photo Picker", "No media selected")
         }
     }
 
     private val launcherIntentCamera = registerForActivityResult(
         ActivityResultContracts.TakePicture()
-    ) { isSuccess ->
+    ) { isSuccess: Boolean ->
         if (isSuccess) {
-            showImage()
+            currentImageUri?.let {
+                showImage()
+                startUCrop(it)
+            }
+        } else {
+            Log.d("Photo Picker", "No media selected")
+        }
+    }
+
+    private val uCropLauncher = registerForActivityResult(UCropContract()) { uri: Uri? ->
+        if (uri != null) {
+            croppedImageUri = uri
+            showCroppedImage(croppedImageUri!!)
+        } else {
+            showToast("Failed to crop image")
         }
     }
 
@@ -78,9 +91,41 @@ class ScanFragment : Fragment() {
         }
     }
 
+    private fun showCroppedImage(uri: Uri) {
+        Log.d(TAG, "Displaying cropped image: $uri")
+        binding.imageScan.setImageURI(uri)
+    }
+
+    private fun analyzeImage(croppedUri: Uri) {
+        val intent = Intent(requireContext(), ResultActivity::class.java)
+        intent.putExtra(ResultActivity.EXTRA_IMAGE_URI, croppedUri.toString())
+    }
+
+    private fun moveToResult() {
+        Log.d(TAG, "Pindah Ke ResultActivity")
+        croppedImageUri?.let {
+            val intent = Intent(requireContext(), ResultActivity::class.java)
+            intent.putExtra(ResultActivity.EXTRA_IMAGE_URI, it.toString())
+            startActivity(intent)
+        }
+    }
+
+    private fun startUCrop(sourceUri: Uri) {
+        val fileName = "cropped_image_${System.currentTimeMillis()}.jpg"
+        val cacheDir = requireContext().cacheDir
+        val destinationUri = Uri.fromFile(File(cacheDir, fileName))
+
+        val uCrop = UCrop.of(sourceUri, destinationUri)
+            .withAspectRatio(1f, 1f)
+            .withMaxResultSize(1000, 1000)
+        uCropLauncher.launch(uCrop.getIntent(requireContext()))
+    }
+
     private fun startCamera() {
         currentImageUri = getImageUri(requireActivity())
-        launcherIntentCamera.launch(currentImageUri!!)
+        currentImageUri?.let {
+            launcherIntentCamera.launch(it)
+        }
     }
 
     private fun startGallery() {
@@ -89,24 +134,6 @@ class ScanFragment : Fragment() {
         )
     }
 
-    private fun uploadImage() {
-        currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, requireActivity()).reduceFileImage()
-            Log.d("Image", "showImage: ${imageFile.path}")
-            showLoading(true)
-
-            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
-            val multipartBody = MultipartBody.Part.createFormData(
-                "photo",
-                imageFile.name,
-                requestImageFile
-            )
-        } ?: showToast(getString(R.string.empty_image_warning))
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
 
     private fun showToast(message: String) {
         Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
@@ -115,5 +142,20 @@ class ScanFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+}
+
+// Contract for UCrop
+class UCropContract : ActivityResultContract<Intent, Uri?>() {
+    override fun createIntent(context: Context, input: Intent): Intent {
+        return input
+    }
+
+    override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
+        return if (resultCode == AppCompatActivity.RESULT_OK) {
+            UCrop.getOutput(intent!!)
+        } else {
+            null
+        }
     }
 }

@@ -71,4 +71,7 @@ dependencies {
     //Ucrop
     implementation(libs.ucrop)
 
+    implementation(libs.circleimageview)
+
+
 }

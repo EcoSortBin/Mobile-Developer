@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "212791796229",
+    "project_id": "capstone-ecosortbin",
+    "storage_bucket": "capstone-ecosortbin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212791796229:android:794b0768307c75a1df326c",
+        "android_client_info": {
+          "package_name": "com.capstone.ecosortbin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-ZmElCYYSa6PAny3Mu4v2guXoLVmNU7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

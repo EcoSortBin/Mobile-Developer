@@ -10,99 +10,94 @@ import android.provider.MediaStore
 import android.util.Log
 import com.capstone.ecosortbin.R
 import org.tensorflow.lite.DataType
-import org.tensorflow.lite.Interpreter
+import org.tensorflow.lite.support.common.ops.CastOp
 import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
-import java.io.FileInputStream
-import java.nio.MappedByteBuffer
-import java.nio.channels.FileChannel
+import org.tensorflow.lite.task.core.BaseOptions
+import org.tensorflow.lite.task.vision.classifier.Classifications
+import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
 @Suppress("DEPRECATION")
 class ImageClassifierHelper(
     private var threshold: Float = 0.1f,
-    private var maxResult: Int = 3,
-    private val modelName: String = "model_ecosortbin.tflite",
-    private val context: Context,
+    private var maxResults: Int = 3,
+    private val modelName: String = "ModelEcosortbin.tflite",
+    val context: Context,
     private val classifierListener: ClassifierListener?
 ) {
-    interface ClassifierListener {
-        fun onError(errorMessage: String)
-        fun onResult(
-            result: List<Float>?,
-            interfaceTime: Long
-        )
-    }
 
-    private var interpreter: Interpreter? = null
+    private var imageClassifier: ImageClassifier? = null
 
     init {
-        setupInterpreter()
+        setupImageClassifier()
     }
 
-    private fun setupInterpreter() {
+    private fun setupImageClassifier() {
+        val optionsBuilder = ImageClassifier.ImageClassifierOptions.builder()
+            .setScoreThreshold(threshold)
+            .setMaxResults(maxResults)
+        val baseOptionsBuilder = BaseOptions.builder()
+            .setNumThreads(4)
+        optionsBuilder.setBaseOptions(baseOptionsBuilder.build())
+
         try {
-            interpreter = Interpreter(loadModelFile(context, modelName))
-        } catch (e: Exception) {
+            imageClassifier = ImageClassifier.createFromFileAndOptions(
+                context,
+                modelName,
+                optionsBuilder.build()
+            )
+        } catch (e: IllegalStateException) {
             classifierListener?.onError(context.getString(R.string.image_classifier_failed))
             Log.e(TAG, e.message.toString())
         }
     }
 
-    private fun loadModelFile(context: Context, modelName: String): MappedByteBuffer {
-        val fileDescriptor = context.assets.openFd(modelName)
-        val inputStream = FileInputStream(fileDescriptor.fileDescriptor)
-        val fileChannel = inputStream.channel
-        val startOffset = fileDescriptor.startOffset
-        val declaredLength = fileDescriptor.declaredLength
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
-    }
-
     fun classifyStaticImage(imageUri: Uri) {
-        if (interpreter == null) {
-            setupInterpreter()
+        if (imageClassifier == null) {
+            setupImageClassifier()
         }
-        val bitmap = getImageBitmap(imageUri)
-        val tensorImage = preprocessImage(bitmap)
-        val result = performInference(tensorImage)
-        notifyResults(result)
+
+        val bitmap = toBitmap(imageUri)
+        val tensorImage = imageProcessor(bitmap)
+        val results = getTimage(tensorImage)
+        notify(results)
     }
 
-    private fun getImageBitmap(imageUri: Uri): Bitmap {
-        return if (checkVersion()) {
-            val source = ImageDecoder.createSource(context.contentResolver, imageUri)
+    private fun toBitmap(image: Uri): Bitmap {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val source = ImageDecoder.createSource(context.contentResolver, image)
             ImageDecoder.decodeBitmap(source)
         } else {
-            MediaStore.Images.Media.getBitmap(context.contentResolver, imageUri)
+            MediaStore.Images.Media.getBitmap(context.contentResolver, image)
         }.copy(Bitmap.Config.ARGB_8888, true)
     }
 
-    private fun preprocessImage(bitmap: Bitmap): TensorImage {
-        val tensorImage = TensorImage(DataType.FLOAT32)
-        tensorImage.load(bitmap)
-        val inputSize = 224 // Sesuaikan dengan ukuran input model Anda
-        val imageProcessor = ImageProcessor.Builder()
-            .add(ResizeOp(inputSize, inputSize, ResizeOp.ResizeMethod.NEAREST_NEIGHBOR))
-            .build()
-        return imageProcessor.process(tensorImage)
+
+    private fun getTimage(tensorImage: TensorImage): List<Classifications>? {
+        val inferenceTime = SystemClock.uptimeMillis()
+        val results = imageClassifier?.classify(tensorImage)
+        val elapsedTime = SystemClock.uptimeMillis() - inferenceTime
+        classifierListener?.onResults(results, elapsedTime)
+        return results
     }
 
-    private fun checkVersion(): Boolean {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
+    private fun imageProcessor(bitmap: Bitmap): TensorImage = ImageProcessor.Builder()
+        .add(ResizeOp(224, 224, ResizeOp.ResizeMethod.NEAREST_NEIGHBOR))
+        .add(CastOp(DataType.UINT8))
+        .build()
+        .process(TensorImage.fromBitmap(bitmap))
+
+    private fun notify(results: List<Classifications>?) {
+        classifierListener?.onResults(results, 0)
     }
 
-    private fun performInference(tensorImage: TensorImage): List<Float>? {
-        val inputBuffer = tensorImage.buffer
-        val outputBuffer = Array(1) { FloatArray(maxResult) } // Sesuaikan dengan output model Anda
-        var inferenceTime = SystemClock.uptimeMillis()
-        interpreter?.run(inputBuffer, outputBuffer)
-        inferenceTime = SystemClock.uptimeMillis() - inferenceTime
-        classifierListener?.onResult(outputBuffer[0].toList(), inferenceTime)
-        return outputBuffer[0].toList()
-    }
-
-    private fun notifyResults(result: List<Float>?) {
-        classifierListener?.onResult(result, 0)
+    interface ClassifierListener {
+        fun onError(error: String)
+        fun onResults(
+            results: List<Classifications>?,
+            inferenceTime: Long
+        )
     }
 
     companion object {

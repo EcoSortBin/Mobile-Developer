@@ -3,32 +3,27 @@ package com.capstone.ecosortbin
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.capstone.ecosortbin.R
-import com.capstone.ecosortbin.ui.login.LoginActivity
+import androidx.lifecycle.lifecycleScope
 import com.capstone.ecosortbin.ui.main.MainActivity
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
-
-    private val SPLASH_DISPLAY_LENGTH = 2500L
-
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_splash)
+        supportActionBar?.hide()
 
-        val splashView = findViewById<View>(R.id.splash)
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            val mainIntent = Intent(this, MainActivity::class.java)
-            startActivity(mainIntent)
+        lifecycleScope.launch {
+            delay(3.seconds)
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
-        }, SPLASH_DISPLAY_LENGTH)
+        }
     }
 }
